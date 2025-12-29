@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121ad05ee419fa540b37988496122c29, type: 3}
+  m_Name: Herbs
+  m_EditorClassIdentifier: Assembly-CSharp::VillainByMistake.Card.Card
+  cardName: Herbs
+  description: Some low quality Herbs that heal 2 HP
+  artwork: {fileID: 0}
+  energyCost: 1
+  cardType: 2
+  damageType: 5
+  damage: 0
+  heal: 2
+  armor: 0
+  hasSpecialEffect: 0
+  effectType: 3
+  effectValue: 0
+  effectDuration: 0
+  effectChance: 100
+  targetType: 0
