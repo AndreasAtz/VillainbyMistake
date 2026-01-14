@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243356256}
   - component: {fileID: 243356255}
+  - component: {fileID: 243356257}
   m_Layer: 0
   m_Name: EnemyHero
   m_TagString: Untagged
@@ -210,6 +211,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &243356257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243356254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efcee78ea10dfde4b8a30d9e86f75717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  maxHealth: 30
+  currentHealth: 0
+  energy: 3
+  enemyDeck: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &679468802
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +241,7 @@ GameObject:
   - component: {fileID: 679468805}
   - component: {fileID: 679468804}
   - component: {fileID: 679468803}
+  - component: {fileID: 679468806}
   m_Layer: 0
   m_Name: Healthbar
   m_TagString: Untagged
@@ -240,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ef4f2359466304c9ee3d1f8efa95e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterHealthBarUI
-  character: {fileID: 1038610756}
+  character: {fileID: 0}
   healthSlider: {fileID: 0}
   healthFill: {fileID: 0}
   healthGradient:
@@ -351,6 +372,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &679468806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679468802}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ab615040685ce4e95e1c8049f711b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthBar
+  isPlayerHealthBar: 0
+  slider: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!1 &987610792
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +432,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c22159a4a05414face6c83950839d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameHandler
+  currentState: 0
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  OnGameStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1038610753
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,15 +545,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9773f84406f95d444a3c73e4216ea63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VillainByMistake.Characters.PlayerCharacter
-  characterName: Rigby
   maxHealth: 10
   currentHealth: 0
   maxEnergy: 2
   currentEnergy: 0
-  currentShield: 0
-  characterPortrait: {fileID: 0}
-  canDie: 1
-  deathEffectPrefab: {fileID: 0}
+  currentArmor: 0
+  startingDeck: []
+  deck: []
+  hand: []
+  discardPile: []
+  maxHandSize: 3
+  handDisplay: {fileID: 0}
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnergyChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnArmorChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHandUpdated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1050727235
 GameObject:
   m_ObjectHideFlags: 0
