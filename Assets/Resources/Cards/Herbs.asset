@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VillainByMistake.Card.Card
   cardName: Herbs
   description: Some low quality Herbs that heal 2 HP
-  artwork: {fileID: 0}
+  artwork: {fileID: -1756047590, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
   energyCost: 1
   cardType: 2
   damageType: 5
