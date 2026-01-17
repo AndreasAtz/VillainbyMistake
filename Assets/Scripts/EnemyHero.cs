@@ -6,9 +6,9 @@ using VillainByMistake.Cards;
 public class EnemyController : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] private int maxHealth = 30;
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int energy = 3;
+    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private int currentHealth = 10;
+    [SerializeField] private int energy = 2;
     
     [Header("AI Deck")]
     [SerializeField] private List<Card> enemyDeck = new List<Card>();
@@ -92,8 +92,8 @@ public class EnemyController : MonoBehaviour
         else
         {
             // Basic attack if no cards
-            player.TakeDamage(5);
-            Debug.Log("Enemy performs basic attack for 5 damage");
+            player.TakeDamage(2);
+            Debug.Log("Enemy performs basic attack for 2 damage");
         }
     }
     

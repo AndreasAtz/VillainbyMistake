@@ -432,6 +432,8 @@ MonoBehaviour:
   currentState: 0
   player: {fileID: 1038610756}
   enemy: {fileID: 243356257}
+  deckManager: {fileID: 1778033252}
+  handManager: {fileID: 1733673744}
   OnGameStateChanged:
     m_PersistentCalls:
       m_Calls: []

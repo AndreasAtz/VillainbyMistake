@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameState currentState = GameState.PlayerTurn;
     [SerializeField] private PlayerController player;
     [SerializeField] private EnemyController enemy;
+    [SerializeField] private DeckManager deckManager;
+    [SerializeField] private HandManager handManager;
     
     public UnityEvent<GameState> OnGameStateChanged;
     public UnityEvent<bool> OnGameOver; // true if player won
@@ -56,7 +58,9 @@ public class GameManager : MonoBehaviour
     
     public void EndEnemyTurn()
     {
+        deckManager.DrawCard(handManager);
         StartPlayerTurn();
+        
     }
     
     public void CheckGameOver()

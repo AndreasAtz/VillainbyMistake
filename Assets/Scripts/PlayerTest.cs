@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private int maxHealth = 10;
-    [SerializeField] private int currentHealth;
+    [SerializeField] private int currentHealth = 10;
     [SerializeField] private int maxEnergy = 2;
     [SerializeField] private int currentEnergy;
     [SerializeField] private int currentArmor = 0;
@@ -62,9 +62,6 @@ public class PlayerController : MonoBehaviour
         
         // Process start-of-turn effects
         ProcessStartTurnEffects();
-        
-        // Draw 1 card
-        DrawCards(1);
         
         Debug.Log($"Player Turn Started - Energy: {currentEnergy}, Health: {currentHealth}");
     }
