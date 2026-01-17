@@ -151,6 +151,6 @@ public class HandManager : MonoBehaviour
 
     UpdateHandVisuals();
 }
-
+//Für Andi zum Pullen
 }
 
