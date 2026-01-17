@@ -1,8 +1,9 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using VillainByMistake;
 using VillainByMistake.Cards;
+
 
 public class HandManager : MonoBehaviour
 {
@@ -59,3 +60,97 @@ public class HandManager : MonoBehaviour
         }
     }
 }
+*/ 
+using UnityEngine;
+using System.Collections.Generic;
+using VillainByMistake.Cards;
+
+public class HandManager : MonoBehaviour
+{
+    public GameObject cardPrefab;
+    public Transform handTransform;
+
+    public float fanSpread = 7.5f;
+    public float cardSpacing = 200f;
+    public float verticalSpacing = 100f;
+
+    private PlayerController player;
+    private readonly List<GameObject> cardsInHand = new();
+
+    void Start()
+    {
+        player = GameManager.Instance.Player;
+        player.OnHandUpdated.AddListener(RefreshHand);
+        RefreshHand();
+    }
+
+    void RefreshHand()
+    {
+        // alte Karten entfernen
+        foreach (var go in cardsInHand) Destroy(go);
+        cardsInHand.Clear();
+
+        // neue Karten aus Player.Hand erzeugen
+        foreach (Card card in player.Hand)
+        {
+            GameObject newCard = Instantiate(cardPrefab, handTransform);
+            cardsInHand.Add(newCard);
+
+            var display = newCard.GetComponent<CardDisplay>();
+            display.cardData = card;
+            display.UpdateCardDisplay();
+
+            var click = newCard.GetComponent<CardClickHandler>();
+            if (click == null) click = newCard.AddComponent<CardClickHandler>();
+            click.SetCard(card);
+        }
+
+        UpdateHandVisuals();
+    }
+
+    private void UpdateHandVisuals()
+    {
+        int cardCount = cardsInHand.Count;
+        if (cardCount == 0) return;
+
+        if (cardCount == 1)
+        {
+            cardsInHand[0].transform.localRotation = Quaternion.identity;
+            cardsInHand[0].transform.localPosition = Vector3.zero;
+            return;
+        }
+
+        for (int i = 0; i < cardCount; i++)
+        {
+            float rotationAngle = fanSpread * (i - (cardCount - 1) / 2f);
+            cardsInHand[i].transform.localRotation = Quaternion.Euler(0f, 0f, rotationAngle);
+
+            float horizontalOffset = cardSpacing * (i - (cardCount - 1) / 2f);
+
+            float normalizedPosition = (2f * i / (cardCount - 1)) - 1f;
+            float verticalOffset = verticalSpacing * (1f - normalizedPosition * normalizedPosition);
+
+            cardsInHand[i].transform.localPosition = new Vector3(horizontalOffset, verticalOffset, 0f);
+        }
+    }
+
+    public void AddCardToHand(Card cardData)
+{
+    GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity, handTransform);
+    cardsInHand.Add(newCard);
+
+    // CardDisplay setzen + refresh
+    var display = newCard.GetComponent<CardDisplay>();
+    display.cardData = cardData;
+    display.UpdateCardDisplay(); // wichtig!
+
+    // ClickHandler setzen
+    var click = newCard.GetComponent<CardClickHandler>();
+    if (click == null) click = newCard.AddComponent<CardClickHandler>();
+    click.SetCard(cardData);
+
+    UpdateHandVisuals();
+}
+
+}
+
