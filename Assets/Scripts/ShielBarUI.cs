@@ -37,7 +37,7 @@ public class ShieldBarUI : MonoBehaviour
     {
         if (pips == null) return;
 
-        // max 5 anzeigen
+        // only show the 5 pipes in the UI
         int shown = Mathf.Clamp(armor, 0, pips.Length);
 
         for (int i = 0; i < pips.Length; i++)

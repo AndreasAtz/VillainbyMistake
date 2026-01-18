@@ -29,10 +29,10 @@ public class EnemyController : MonoBehaviour
     
     public void StartTurn()
     {
-        // Process enemy's start of turn effects (like poison damage)
+        // Used for next semester, so that enemy can take dmg from poison eg.
         ProcessStartTurnEffects();
         
-        // Simple AI: Play 1 card or basic attack
+        // The turn the enemy makes
         PlayAITurn();
         
         // End turn after delay
@@ -87,13 +87,13 @@ public class EnemyController : MonoBehaviour
                 Debug.Log($"Enemy plays {cardToPlay.cardName} for {cardToPlay.damage} damage");
             }
             
-            // Move to discard (simple implementation)
+            // Move to discard 
             enemyDeck.RemoveAt(0);
         }
         else
         {
             int damage = Random.Range(1, 3);
-            // Basic attack if no cards
+            // Basic attack if no cards, our go to for now
             player.TakeDamage(damage);
             Debug.Log($"Enemy performs basic attack for {damage} damage");
         }
@@ -111,12 +111,9 @@ public class EnemyController : MonoBehaviour
         switch (effect)
         {
             case EffectType.Poison:
-                // Poison starts on NEXT turn, so just log for now
                 break;
                 
             case EffectType.Shield:
-                // Enemies don't typically have armor, but we could add it
-                // For now, just ignore or implement if needed
                 break;
         }
     }

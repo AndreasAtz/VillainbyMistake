@@ -12,7 +12,7 @@ public class DeckManager : MonoBehaviour
 
     void Start()
     {
-        //Load all cards from Resources
+        //Load all cards from Resources folder (our premade cards are there)
         Card[] cards = Resources.LoadAll<Card>("Cards");
 
         //Add the loaded cards to the allCards list
@@ -26,8 +26,7 @@ public class DeckManager : MonoBehaviour
         Card nextCard = allCards[currentIndex];
         handManager.AddCardToHand(nextCard);
         currentIndex = (currentIndex + 1) % allCards.Count;
-        //Logic so that next card is drawn from the top of the deck
-        
+        //Logic so that next card is drawn from the top of the deck        
     }
     
 }

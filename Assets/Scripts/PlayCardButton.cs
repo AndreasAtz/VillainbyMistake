@@ -5,20 +5,19 @@ using VillainByMistake.Cards;
 public class PlayCardButton : MonoBehaviour
 {
     [Header("Optional references (can auto-find)")]
-    [SerializeField] private CardDisplay cardDisplay;     // sitzt auf dem CardPrefab-Root
-    [SerializeField] private HandManager handManager;     // Manager in der Scene
+    [SerializeField] private CardDisplay cardDisplay;     
+    [SerializeField] private HandManager handManager;     
     [SerializeField] private Button button;
 
     private void Awake()
     {
+        // All this ifs are if we didnt define them in inspector so they auto-find everything they need, just in case ifs
         if (button == null)
             button = GetComponent<Button>();
 
-        // CardDisplay liegt meist am Root der Karte
         if (cardDisplay == null)
             cardDisplay = GetComponentInParent<CardDisplay>();
 
-        // HandManager in der Scene finden
         if (handManager == null)
             handManager = FindFirstObjectByType<HandManager>();
 
@@ -40,7 +39,6 @@ public class PlayCardButton : MonoBehaviour
             return;
         }
 
-        // PlayerController kommt bei euch über GameManager.Instance.Player
         var player = GameManager.Instance != null ? GameManager.Instance.Player : null;
         if (player == null)
         {
@@ -50,7 +48,6 @@ public class PlayCardButton : MonoBehaviour
 
         Card card = cardDisplay.cardData;
 
-        // Versuche Karte zu spielen
         bool played = player.TryPlayCard(card);
         if (!played)
         {
@@ -58,7 +55,7 @@ public class PlayCardButton : MonoBehaviour
             return;
         }
 
-        // Wenn gespielt: UI-Karte entfernen
+        // Remove the card from the hand 
         if (handManager != null)
             handManager.RemoveCardObjectFromHand(cardDisplay.gameObject);
         else

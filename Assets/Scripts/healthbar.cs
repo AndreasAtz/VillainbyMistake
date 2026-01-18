@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using VillainByMistake.Characters;
+// Sad first over the top fancy Healthbar try didnt work out so we switched to easier implementation, this is not used, maybe in the future
 
 public class CharacterHealthBarUI : MonoBehaviour
 {
     [Header("Character Reference")]
-    [SerializeField] private Character character;   // Player or Enemy
+    [SerializeField] private Character character;   
     
     [Header("UI Components")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Image healthFill;
-    [SerializeField] private Gradient healthGradient; // Color from healthy to damaged
+    [SerializeField] private Gradient healthGradient; 
     
     [Header("Optional Text Display")]
-    [SerializeField] private Text healthText; // Shows "100/100"
+    [SerializeField] private Text healthText; 
     [SerializeField] private bool showText = true;
     
     [Header("Smooth Animation")]
@@ -54,7 +55,7 @@ public class CharacterHealthBarUI : MonoBehaviour
 
     private void Update()
     {
-        // Smooth animation for health bar
+        // Animation for health bar cause we fancy
         if (useSmoothAnimation && healthSlider != null)
         {
             healthSlider.value = Mathf.Lerp(healthSlider.value, targetHealthValue, 
@@ -69,9 +70,6 @@ public class CharacterHealthBarUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Initialize the health bar with a character
-    /// </summary>
     public void Initialize(Character targetCharacter)
     {
         if (targetCharacter == null)
@@ -80,17 +78,13 @@ public class CharacterHealthBarUI : MonoBehaviour
             return;
         }
 
-        // Unsubscribe from previous character
         if (character != null)
             character.OnHealthChanged -= UpdateHealthBar;
 
-        // Set new character
         character = targetCharacter;
         
-        // Subscribe to health changes
         character.OnHealthChanged += UpdateHealthBar;
         
-        // Set initial values
         if (healthSlider != null)
         {
             healthSlider.minValue = 0;
@@ -110,17 +104,12 @@ public class CharacterHealthBarUI : MonoBehaviour
         isInitialized = true;
     }
 
-    /// <summary>
-    /// Update health bar when character health changes
-    /// </summary>
     private void UpdateHealthBar()
     {
         if (character == null || healthSlider == null) return;
 
-        // Set target value for smooth animation
         targetHealthValue = character.CurrentHealth;
         
-        // If not using smooth animation, set immediately
         if (!useSmoothAnimation)
         {
             healthSlider.value = targetHealthValue;
@@ -128,14 +117,8 @@ public class CharacterHealthBarUI : MonoBehaviour
         }
         
         UpdateHealthText();
-        
-        // Optional: Play damage/heal animation
-        PlayHealthChangeEffect();
     }
 
-    /// <summary>
-    /// Update the fill color based on health percentage
-    /// </summary>
     private void UpdateGradientColor()
     {
         if (healthFill == null || healthGradient == null) return;
@@ -144,9 +127,6 @@ public class CharacterHealthBarUI : MonoBehaviour
         healthFill.color = healthGradient.Evaluate(healthPercentage);
     }
 
-    /// <summary>
-    /// Update the health text display
-    /// </summary>
     private void UpdateHealthText()
     {
         if (healthText == null || !showText) return;
@@ -154,18 +134,6 @@ public class CharacterHealthBarUI : MonoBehaviour
         healthText.text = $"{character.CurrentHealth}/{character.maxHealth}";
     }
 
-    /// <summary>
-    /// Play visual effect when health changes
-    /// </summary>
-    private void PlayHealthChangeEffect()
-    {
-        // You can add particle effects, screen shake, etc. here
-        // Example: StartCoroutine(FlashHealthBar());
-    }
-
-    /// <summary>
-    /// Manually set health values (useful for non-character objects)
-    /// </summary>
     public void SetHealthValues(int currentHealth, int maxHealth)
     {
         if (healthSlider != null)
@@ -177,14 +145,12 @@ public class CharacterHealthBarUI : MonoBehaviour
             if (!useSmoothAnimation)
                 healthSlider.value = currentHealth;
             
-            // Update gradient if using immediate update
             if (!useSmoothAnimation && healthFill != null && healthGradient != null)
             {
                 float healthPercentage = currentHealth / (float)maxHealth;
                 healthFill.color = healthGradient.Evaluate(healthPercentage);
             }
             
-            // Update text
             if (healthText != null && showText)
             {
                 healthText.text = $"{currentHealth}/{maxHealth}";
@@ -192,9 +158,6 @@ public class CharacterHealthBarUI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Change which character this health bar is tracking
-    /// </summary>
     public void SetCharacter(Character newCharacter)
     {
         Initialize(newCharacter);

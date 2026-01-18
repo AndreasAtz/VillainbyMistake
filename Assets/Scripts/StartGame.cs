@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class StartGameButton : MonoBehaviour
 {
     [SerializeField] private Button startButton;
-    [SerializeField] private CanvasGroup buttonCanvasGroup; // For fade out
+    [SerializeField] private CanvasGroup buttonCanvasGroup; 
     [SerializeField] private GameManager gameManager;
     [SerializeField] private DeckManager deckManager;
     [SerializeField] private HandManager handManager;
@@ -14,7 +14,6 @@ public class StartGameButton : MonoBehaviour
     
     private void Start()
     {
-        // Ensure button is visible at start
         /*if (buttonCanvasGroup != null)
         {
             buttonCanvasGroup.alpha = 1f;
@@ -22,7 +21,7 @@ public class StartGameButton : MonoBehaviour
             buttonCanvasGroup.blocksRaycasts = true;
         }
         */
-        // Set up button click
+        // The button click
         if (startButton != null)
         {
             startButton.onClick.AddListener(OnStartButtonClicked);
@@ -83,9 +82,6 @@ public class StartGameButton : MonoBehaviour
         buttonCanvasGroup.alpha = 0f;
         buttonCanvasGroup.interactable = false;
         buttonCanvasGroup.blocksRaycasts = false;
-        
-        // Optionally disable the whole GameObject
-        // gameObject.SetActive(false);
     }
     
     // Public method to show button again (for restart)

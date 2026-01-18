@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using VillainByMistake.Cards;
+//We thought of this to easily separate character scripts if needed in the future, but for now all is done in PlayerController
 
 namespace VillainByMistake.Characters
 {
@@ -47,9 +48,6 @@ namespace VillainByMistake.Characters
                 cardToUpgrade.armor += upgradeAmount;
                 Debug.Log($"Upgraded {cardToUpgrade.cardName}: Armor +{upgradeAmount}");
             }
-            
-            // Optional: Visual feedback
-            // StartCoroutine(ShowUpgradeEffect(cardToUpgrade));
         }
         
         public override string GetActiveAbilityDescription()
@@ -63,11 +61,8 @@ namespace VillainByMistake.Characters
             if (currentHealth <= 0)
             {
                 Debug.Log($"{characterName} would die, but his passive prevents it for the run!");
-                currentHealth = 1; // Set to 1 instead of dying
+                currentHealth = 1; 
                 OnHealthChanged?.Invoke();
-                
-                // In full game, you'd track that the passive was used
-                // and remove it for the rest of the run
             }
         }
     }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using VillainByMistake.Characters;
+//Andis thingi
 
 namespace VillainByMistake.UI
 {
@@ -32,19 +33,16 @@ namespace VillainByMistake.UI
         
         void InitializeUI()
         {
-            // Subscribe to player events
             if (playerCharacter != null)
             {
                 playerCharacter.OnHealthChanged += UpdatePlayerHealth;
                 playerCharacter.OnEnergyChanged += UpdatePlayerEnergy;
                 playerCharacter.OnShieldChanged += UpdatePlayerShield;
                 
-                // Setup active ability button
                 if (activeAbilityButton != null)
                 {
                     activeAbilityButton.onClick.AddListener(OnActiveAbilityClicked);
                     
-                    // Safely set button text
                     Text buttonText = activeAbilityButton.GetComponentInChildren<Text>();
                     if (buttonText != null)
                     {
@@ -57,7 +55,6 @@ namespace VillainByMistake.UI
                 Debug.LogWarning("Player Character reference is missing in SimpleCharacterUI!");
             }
             
-            // Subscribe to enemy events
             if (enemyCharacter != null)
             {
                 enemyCharacter.OnHealthChanged += UpdateEnemyHealth;
@@ -67,7 +64,6 @@ namespace VillainByMistake.UI
                 Debug.LogWarning("Enemy Character reference is missing in SimpleCharacterUI!");
             }
             
-            // Initial update
             UpdateAllUI();
         }
         
@@ -83,20 +79,17 @@ namespace VillainByMistake.UI
         {
             if (playerCharacter == null) return;
             
-            // Update health slider
             if (playerHealthSlider != null)
             {
                 playerHealthSlider.maxValue = playerCharacter.maxHealth;
                 playerHealthSlider.value = playerCharacter.CurrentHealth;
             }
             
-            // Update health text
             if (playerHealthText != null)
             {
                 playerHealthText.text = $"{playerCharacter.CurrentHealth}/{playerCharacter.maxHealth}";
             }
             
-            // Update name text
             if (playerNameText != null)
             {
                 playerNameText.text = playerCharacter.characterName;
@@ -128,20 +121,17 @@ namespace VillainByMistake.UI
         {
             if (enemyCharacter == null) return;
             
-            // Update enemy health slider
             if (enemyHealthSlider != null)
             {
                 enemyHealthSlider.maxValue = enemyCharacter.maxHealth;
                 enemyHealthSlider.value = enemyCharacter.CurrentHealth;
             }
             
-            // Update enemy health text
             if (enemyHealthText != null)
             {
                 enemyHealthText.text = $"{enemyCharacter.CurrentHealth}/{enemyCharacter.maxHealth}";
             }
             
-            // Update enemy name text
             if (enemyNameText != null)
             {
                 enemyNameText.text = enemyCharacter.characterName;
@@ -156,7 +146,6 @@ namespace VillainByMistake.UI
             }
         }
         
-        // Public methods to update UI manually (if needed)
         public void RefreshPlayerUI()
         {
             UpdatePlayerHealth();
@@ -169,7 +158,6 @@ namespace VillainByMistake.UI
             UpdateEnemyHealth();
         }
         
-        // Clean up events
         private void OnDestroy()
         {
             if (playerCharacter != null)
@@ -185,10 +173,8 @@ namespace VillainByMistake.UI
             }
         }
         
-        // Optional: Add this to manually set characters if they're created at runtime
         public void SetPlayerCharacter(Character character)
         {
-            // Unsubscribe from old character
             if (playerCharacter != null)
             {
                 playerCharacter.OnHealthChanged -= UpdatePlayerHealth;
@@ -196,10 +182,8 @@ namespace VillainByMistake.UI
                 playerCharacter.OnShieldChanged -= UpdatePlayerShield;
             }
             
-            // Set new character
             playerCharacter = character;
             
-            // Subscribe to new character
             if (playerCharacter != null)
             {
                 playerCharacter.OnHealthChanged += UpdatePlayerHealth;

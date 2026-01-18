@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using VillainByMistake.Cards;
+// We dont use this Script at all, was a first idea to play cards by clicking on them, might use next semester
 
 public class CardClickHandler : MonoBehaviour, IPointerClickHandler
 {
@@ -27,12 +28,12 @@ public class CardClickHandler : MonoBehaviour, IPointerClickHandler
         if (played)
         {
             // Card was successfully played
-            // It will be removed from hand by PlayerController
+            // Remove the card from hand visually
         }
         else
         {
             Debug.Log($"Cannot play card: {card.cardName}");
-            // You could add visual feedback here (shake, color change, etc.)
+            // Add visual feedback here 
         }
     }
 }

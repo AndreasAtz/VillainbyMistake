@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+//First try for the energy bar, not used anynmore
 
 public class EnergyBar : MonoBehaviour
 {

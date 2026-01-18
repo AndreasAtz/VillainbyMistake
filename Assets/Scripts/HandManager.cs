@@ -86,11 +86,11 @@ public class HandManager : MonoBehaviour
 
     void RefreshHand()
     {
-        // alte Karten entfernen
+        // clear existing cards
         foreach (var go in cardsInHand) Destroy(go);
         cardsInHand.Clear();
 
-        // neue Karten aus Player.Hand erzeugen
+        // create new card objects
         foreach (Card card in player.Hand)
         {
             GameObject newCard = Instantiate(cardPrefab, handTransform);
@@ -142,12 +142,12 @@ public class HandManager : MonoBehaviour
     GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity, handTransform);
     cardsInHand.Add(newCard);
 
-    // CardDisplay setzen + refresh
+    // Set the card data of the instantiated card
     var display = newCard.GetComponent<CardDisplay>();
     display.cardData = cardData;
-    display.UpdateCardDisplay(); // wichtig!
+    display.UpdateCardDisplay(); 
 
-    // ClickHandler setzen
+    // ClickHandler again just in case, we tried this before switching to the button
     var click = newCard.GetComponent<CardClickHandler>();
     if (click == null) click = newCard.AddComponent<CardClickHandler>();
     click.SetCard(cardData);
@@ -157,7 +157,7 @@ public class HandManager : MonoBehaviour
     GameManager.Instance.Player.AddCardToListOnly(cardData);
 }
 
-//TEST
+//TEST Rene
 public void RemoveCardObjectFromHand(GameObject cardObject)
 {
     if (cardsInHand.Contains(cardObject))

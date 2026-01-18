@@ -38,7 +38,7 @@ public class HandDisplay : MonoBehaviour
                 display.cardData = card;
                 display.UpdateCardDisplay();
                 
-                // Add click handler
+                // Add the click handler for the cards, we dont use this anymore, but in for next semester
                 CardClickHandler clickHandler = cardObj.GetComponent<CardClickHandler>();
                 if (clickHandler == null)
                     clickHandler = cardObj.AddComponent<CardClickHandler>();

@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         currentEnergy = maxEnergy;
         OnEnergyChanged?.Invoke(currentEnergy);
         
-        // Process start-of-turn effects
+        // Process start-of-turn effects, which is useless now
         ProcessStartTurnEffects();
         
         Debug.Log($"Player Turn Started - Energy: {currentEnergy}, Health: {currentHealth}");
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     
     public bool TryPlayCard(Card card)
     {
-        /* Check conditions
+        /* Check conditions which didnt work heheheheheh
         if (!GameManager.Instance.IsPlayerTurn) return false;
         if (currentEnergy < card.energyCost) return false;
         if (!hand.Contains(card)) return false;
@@ -177,7 +177,6 @@ public class PlayerController : MonoBehaviour
                 break;
             case EffectType.Regeneration:
                 Heal(value);
-                // This would also need to be reapplied each turn
                 break;
         }
     }
@@ -194,7 +193,6 @@ public class PlayerController : MonoBehaviour
                 case EffectType.Regeneration:
                     Heal(effect.Value);
                     break;
-                // Add other ongoing effects here
             }
             
             // Reduce duration
@@ -213,8 +211,6 @@ public class PlayerController : MonoBehaviour
     }
     public void DrawCards(int amount)
     {
-        // Simple method that just updates hand display
-        // Actual card drawing is handled by DeckManager
         OnHandUpdated?.Invoke();
         handDisplay?.UpdateHandDisplay();
     }
@@ -318,7 +314,6 @@ public class PlayerController : MonoBehaviour
     {
         hand.Add(card);
         
-        // Let HandManager handle the visual creation
         if (GameManager.Instance != null && 
             GameManager.Instance.handManager != null)
         {
@@ -337,9 +332,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Hand is full!");
     }
 }
-
-// Remove any other card creation code from PlayerController
-// Look for any Instantiate() calls or other AddCardToHand methods
 
     /*TEST Rene
     public void AddCardToHand(Card card)

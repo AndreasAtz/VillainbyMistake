@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+//The real EnergyBar
 
 public class EnergyBarUI : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class EnergyBarUI : MonoBehaviour
 
     private void Start()
     {
-        // Player finden (oder per Inspector setzen)
+        // Find the player if we did not set it up correctly
         if (player == null && GameManager.Instance != null)
             player = GameManager.Instance.Player;
 
@@ -21,10 +22,10 @@ public class EnergyBarUI : MonoBehaviour
             return;
         }
 
-        // Initial anzeigen
+        // Show initial energy
         Refresh(player.CurrentEnergy);
 
-        // Updates abonnieren
+        // Subscribe to energy changes - so we can update the UI
         player.OnEnergyChanged.AddListener(Refresh);
     }
 

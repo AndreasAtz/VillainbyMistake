@@ -1,4 +1,5 @@
 using UnityEngine;
+// Used to be the Base Class we didnt use this at all, just here for the memory
 
 namespace VillainByMistake.Characters
 {
@@ -45,8 +46,6 @@ namespace VillainByMistake.Characters
             OnEnergyChanged?.Invoke();
             OnShieldChanged?.Invoke();
         }
-        
-        // === CORE METHODS ===
         
         public virtual void TakeDamage(int damage)
         {
@@ -106,7 +105,7 @@ namespace VillainByMistake.Characters
         
         public virtual void RestoreEnergy(int amount = 0)
         {
-            if (amount == 0) amount = maxEnergy; // Full restore if no amount specified
+            if (amount == 0) amount = maxEnergy; 
             currentEnergy = Mathf.Min(currentEnergy + amount, maxEnergy);
             OnEnergyChanged?.Invoke();
             Debug.Log($"{characterName} restored {amount} energy. Total: {currentEnergy}");
@@ -117,16 +116,11 @@ namespace VillainByMistake.Characters
             if (currentHealth <= 0)
             {
                 Debug.Log($"{characterName} died!");
-                // Handle death - will be overridden by PlayerCharacter
             }
         }
         
-        // === ABILITIES (to be overridden) ===
-        
         public abstract void UseActiveAbility();
         public abstract string GetActiveAbilityDescription();
-        
-        // Passive ability will be handled in subclasses
     }
     
 }

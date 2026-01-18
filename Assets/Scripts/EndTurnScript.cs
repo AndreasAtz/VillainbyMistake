@@ -8,7 +8,6 @@ public class EndTurnButton : MonoBehaviour
     
     private void Start()
     {
-        // Auto-find button if not set
         if (endTurnButton == null)
             endTurnButton = GetComponent<Button>();
         
@@ -17,10 +16,8 @@ public class EndTurnButton : MonoBehaviour
             endTurnButton.onClick.AddListener(OnEndTurnClicked);
         }
         
-        // Subscribe to game state changes
         GameManager.Instance.OnGameStateChanged.AddListener(OnGameStateChanged);
         
-        // Set initial state
         UpdateButtonState(GameManager.Instance.CurrentState);
     }
     
@@ -39,7 +36,6 @@ public class EndTurnButton : MonoBehaviour
     
     private void OnEndTurnClicked()
     {
-        // Only allow ending turn during player's turn
         if (GameManager.Instance.IsPlayerTurn)
         {
             GameManager.Instance.EndPlayerTurn();
@@ -56,7 +52,6 @@ public class EndTurnButton : MonoBehaviour
         bool isPlayerTurn = state == GameState.PlayerTurn;
         bool isGameOver = state == GameState.GameOver;
         
-        // Enable button only during player's turn and not game over
         bool shouldBeActive = isPlayerTurn && !isGameOver;
         
         if (endTurnButton != null)

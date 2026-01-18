@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public HandManager handManager;
     
     public UnityEvent<GameState> OnGameStateChanged;
-    public UnityEvent<bool> OnGameOver; // true if player won
+    public UnityEvent<bool> OnGameOver; 
     
-    // Getters for other scripts
+    // Getters for our other scripts
     public GameState CurrentState => currentState;
     public PlayerController Player => player;
     public EnemyController Enemy => enemy;
@@ -120,27 +120,23 @@ private void StopGameCompletely()
 {
     Debug.Log("Stopping game completely...");
     
-    // 1. Freeze the entire game - no more updates, physics, or animations
+    // Freeze the game so no moves can be done
     Time.timeScale = 0f;
     
-    // 2. Disable this GameManager to stop all its processing
+    // Disable the GameManager so nothing can be triggered (to not trigger any bugs)
     this.enabled = false;
     
-    // 3. Cancel any pending Invoke calls (like delayed enemy turns)
+    // Cancel any invokes so nothing can happen after its ended, more usefull for later when we have poison eg.
     CancelInvoke();
     
-    // 4. Stop all coroutines running on this GameObject
+    // Found this while googling 
     StopAllCoroutines();
-    
-    // 5. Optional: Disable player input more aggressively
-    
-    
-    // 6. Optional: Disable enemy
+
+    // Disable the enemy 
     if (enemy != null)
     {
         enemy.enabled = false;
     }
-    
     
     Debug.Log("Game completely frozen and stopped");
 }

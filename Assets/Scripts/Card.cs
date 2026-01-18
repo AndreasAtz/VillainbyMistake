@@ -25,9 +25,9 @@ namespace VillainByMistake.Cards
     public enum EffectType
     {
         None,
-        Poison,        // Damage over time
-        Shield,        // Temporary armor
-        Regeneration,          // Restore health
+        Poison,        // Damage over time (for later use)
+        Shield,        // Armor
+        Regeneration,  // Restore health 
     }
     
     [CreateAssetMenu(fileName = "NewCard", menuName = "Villain By Mistake/Card")]
@@ -54,7 +54,7 @@ namespace VillainByMistake.Cards
         public bool hasSpecialEffect = false;
         public EffectType effectType = EffectType.None;
         
-        // Effect parameters (only show relevant ones in Inspector)
+        // Effect parameters 
         [Tooltip("Amount of effect (damage, shield amount, etc.)")]
         public int effectValue;
         
