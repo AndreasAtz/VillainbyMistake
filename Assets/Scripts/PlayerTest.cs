@@ -277,7 +277,10 @@ public class PlayerController : MonoBehaviour
             OnHealthChanged?.Invoke(currentHealth);
         }
         
+        if (currentHealth <= 0)
+    {
         GameManager.Instance.CheckGameOver();
+    }
     }
     
     public void Heal(int amount)

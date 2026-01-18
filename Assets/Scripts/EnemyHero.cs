@@ -91,9 +91,10 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            int damage = Random.Range(1, 3);
             // Basic attack if no cards
-            player.TakeDamage(2);
-            Debug.Log("Enemy performs basic attack for 2 damage");
+            player.TakeDamage(damage);
+            Debug.Log($"Enemy performs basic attack for {damage} damage");
         }
     }
     
