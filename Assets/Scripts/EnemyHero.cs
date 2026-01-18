@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     public UnityEvent<int> OnHealthChanged;
     
     public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
     
     private void Start()
     {
