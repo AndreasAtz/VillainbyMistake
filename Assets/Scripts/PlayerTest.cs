@@ -307,11 +307,50 @@ public class PlayerController : MonoBehaviour
             Duration = duration;
         }
     }
+    public void AddCardToHand(Card card)
+{
+    // Add to hand list
+    if (hand.Count < maxHandSize)
+    {
+        hand.Add(card);
+        
+        // Let HandManager handle the visual creation
+        if (GameManager.Instance != null && 
+            GameManager.Instance.handManager != null)
+        {
+            GameManager.Instance.handManager.AddCardToHand(card);
+        }
+        else
+        {
+            Debug.LogError("HandManager not found to create card visual!");
+        }
+        
+        OnHandUpdated?.Invoke();
+        handDisplay?.UpdateHandDisplay();
+    }
+    else
+    {
+        Debug.Log("Hand is full!");
+    }
+}
 
-    //TEST Rene
+// Remove any other card creation code from PlayerController
+// Look for any Instantiate() calls or other AddCardToHand methods
+
+    /*TEST Rene
     public void AddCardToHand(Card card)
     {
         hand.Add(card);
         OnHandUpdated?.Invoke();
     }
+    */
+    public void AddCardToListOnly(Card card)
+{
+    if (hand.Count < maxHandSize)
+    {
+        hand.Add(card);
+        OnHandUpdated?.Invoke();
+        handDisplay?.UpdateHandDisplay();
+    }
+}
 }

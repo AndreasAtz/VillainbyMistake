@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private EnemyController enemy;
     [SerializeField] private DeckManager deckManager;
-    [SerializeField] private HandManager handManager;
+    [SerializeField] public HandManager handManager;
     
     public UnityEvent<GameState> OnGameStateChanged;
     public UnityEvent<bool> OnGameOver; // true if player won

@@ -41,7 +41,7 @@ public class StartGameButton : MonoBehaviour
     {
         Debug.Log("Start Game button clicked");
         
-        // Draw 3 starting cards
+        // Draw 3
         if (deckManager != null && handManager != null)
         {
             for (int i = 0; i < 3; i++)
@@ -62,7 +62,6 @@ public class StartGameButton : MonoBehaviour
             gameManager.StartPlayerTurn();
         }
         
-        // Hide the button with fade animation
     }
     
     

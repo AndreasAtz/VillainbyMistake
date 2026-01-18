@@ -137,7 +137,7 @@ public class HandManager : MonoBehaviour
     public void AddCardToHand(Card cardData)
 {
     //TEST 16:58
-    GameManager.Instance.Player.AddCardToHand(cardData);
+    //GameManager.Instance.Player.AddCardToHand(cardData);
 
     GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity, handTransform);
     cardsInHand.Add(newCard);
@@ -153,6 +153,8 @@ public class HandManager : MonoBehaviour
     click.SetCard(cardData);
 
     UpdateHandVisuals();
+
+    GameManager.Instance.Player.AddCardToListOnly(cardData);
 }
 
 //TEST

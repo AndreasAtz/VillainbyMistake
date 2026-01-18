@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   maxHealth: 10
-  currentHealth: 0
+  currentHealth: 10
   energy: 2
   enemyDeck: []
   OnHealthChanged:
@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VillainByMistake.Characters.PlayerCharacter
   maxHealth: 10
-  currentHealth: 0
+  currentHealth: 10
   maxEnergy: 2
   currentEnergy: 0
   currentArmor: 0
