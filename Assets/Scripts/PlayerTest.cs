@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public UnityEvent OnHandUpdated;
     
     // Properties for easy access
+    public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
     public int CurrentEnergy => currentEnergy;
     public int CurrentArmor => currentArmor;
