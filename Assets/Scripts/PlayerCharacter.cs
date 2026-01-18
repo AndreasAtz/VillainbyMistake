@@ -101,6 +101,7 @@ namespace VillainByMistake.Characters
             }
             Debug.Log($"Not enough energy! Needed: {amount}, Has: {currentEnergy}");
             return false;
+            
         }
         
         public virtual void RestoreEnergy(int amount = 0)
@@ -127,4 +128,5 @@ namespace VillainByMistake.Characters
         
         // Passive ability will be handled in subclasses
     }
+    
 }

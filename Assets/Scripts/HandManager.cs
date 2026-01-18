@@ -136,6 +136,9 @@ public class HandManager : MonoBehaviour
 
     public void AddCardToHand(Card cardData)
 {
+    //TEST 16:58
+    GameManager.Instance.Player.AddCardToHand(cardData);
+
     GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity, handTransform);
     cardsInHand.Add(newCard);
 
@@ -151,6 +154,17 @@ public class HandManager : MonoBehaviour
 
     UpdateHandVisuals();
 }
-//Für Andi zum Pullen
+
+//TEST
+public void RemoveCardObjectFromHand(GameObject cardObject)
+{
+    if (cardsInHand.Contains(cardObject))
+        cardsInHand.Remove(cardObject);
+
+    Destroy(cardObject);
+    UpdateHandVisuals();
+}
+
+
 }
 

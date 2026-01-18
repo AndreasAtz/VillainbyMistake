@@ -68,10 +68,28 @@ public class PlayerController : MonoBehaviour
     
     public bool TryPlayCard(Card card)
     {
-        // Check conditions
+        /* Check conditions
         if (!GameManager.Instance.IsPlayerTurn) return false;
         if (currentEnergy < card.energyCost) return false;
         if (!hand.Contains(card)) return false;
+        */
+        if (!GameManager.Instance.IsPlayerTurn) //The next 3 ifs test for debugging purposes because rene is a tester that tests tests
+        {
+        Debug.Log("TryPlayCard blocked: NOT PlayerTurn");
+        return false;
+        }
+
+        if (currentEnergy < card.energyCost)
+        {
+        Debug.Log($"TryPlayCard blocked: NOT enough energy ({currentEnergy} < {card.energyCost})");
+        return false;
+        }
+
+        if (!hand.Contains(card))
+        {
+        Debug.Log("TryPlayCard blocked: card NOT in player hand list");
+        return false;
+        }
         
         // Spend energy
         currentEnergy -= card.energyCost;
@@ -288,5 +306,12 @@ public class PlayerController : MonoBehaviour
             Value = value;
             Duration = duration;
         }
+    }
+
+    //TEST Rene
+    public void AddCardToHand(Card card)
+    {
+        hand.Add(card);
+        OnHandUpdated?.Invoke();
     }
 }
