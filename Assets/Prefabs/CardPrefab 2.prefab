@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 2423216714592303705}
   - component: {fileID: 6801023103559137121}
   - component: {fileID: 1309793088280027953}
+  - component: {fileID: 8180222635679155506}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -468,6 +469,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8180222635679155506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3104932936151932464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f988266d92566439128b2c8a79d80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayCardButton
 --- !u!1 &3292093677110225147
 GameObject:
   m_ObjectHideFlags: 0
