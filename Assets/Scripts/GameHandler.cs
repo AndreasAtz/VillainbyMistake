@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         
     }
     
-    public void CheckGameOver()
+    /*public void CheckGameOver()
     {
         if (player.CurrentHealth <= 0)
         {
@@ -94,4 +94,55 @@ public class GameManager : MonoBehaviour
             Debug.Log("Game Over - Player Won!");
         }
     }
+    */
+    public void CheckGameOver()
+{
+    // Check if game is already over
+    if (currentState == GameState.GameOver) return;
+    
+    if (player.CurrentHealth <= 0)
+    {
+        currentState = GameState.GameOver;
+        OnGameOver?.Invoke(false);
+        Debug.Log("Game Over - Player Lost");
+        StopGameCompletely();
+    }
+    else if (enemy.CurrentHealth <= 0)
+    {
+        currentState = GameState.GameOver;
+        OnGameOver?.Invoke(true);
+        Debug.Log("Game Over - Player Won!");
+        StopGameCompletely();
+    }
+}
+
+private void StopGameCompletely()
+{
+    Debug.Log("Stopping game completely...");
+    
+    // 1. Freeze the entire game - no more updates, physics, or animations
+    Time.timeScale = 0f;
+    
+    // 2. Disable this GameManager to stop all its processing
+    this.enabled = false;
+    
+    // 3. Cancel any pending Invoke calls (like delayed enemy turns)
+    CancelInvoke();
+    
+    // 4. Stop all coroutines running on this GameObject
+    StopAllCoroutines();
+    
+    // 5. Optional: Disable player input more aggressively
+    
+    
+    // 6. Optional: Disable enemy
+    if (enemy != null)
+    {
+        enemy.enabled = false;
+    }
+    
+    
+    Debug.Log("Game completely frozen and stopped");
+}
+
 }
