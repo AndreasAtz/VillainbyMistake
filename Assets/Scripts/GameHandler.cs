@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using VillainByMistake.Cards;
 
-public enum GameState { PlayerTurn, EnemyTurn, GameOver }
+public enum GameState {PlayerTurn, EnemyTurn, GameOver }
 
 public class GameManager : MonoBehaviour
 {
@@ -27,13 +27,29 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
     }
     
     private void Start()
     {
+         for (int i = 0; i < 3; i++)
+        {
+            deckManager.DrawCard(handManager);
+        }
+        //FirstPlayerTurn();
         StartPlayerTurn();
     }
-    
+
+    /*public void FirstPlayerTurn()
+    {
+        currentState = GameState.PlayerTurn;
+        deckManager.DrawCard(handManager);
+        deckManager.DrawCard(handManager);
+        deckManager.DrawCard(handManager);
+        player.StartTurn();
+        StartPlayerTurn();
+    }
+    */
     public void StartPlayerTurn()
     {
         currentState = GameState.PlayerTurn;

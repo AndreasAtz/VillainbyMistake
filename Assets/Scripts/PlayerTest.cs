@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int currentEnergy;
     [SerializeField] private int currentArmor = 0;
     
-    [Header("Deck & Hand")]
-    [SerializeField] private List<Card> startingDeck = new List<Card>();
+    //[Header("Deck & Hand")]
+    //[SerializeField] private List<Card> startingDeck = new List<Card>();
     [SerializeField] private List<Card> deck = new List<Card>();
     [SerializeField] private List<Card> hand = new List<Card>();
     [SerializeField] private List<Card> discardPile = new List<Card>();
@@ -40,11 +40,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        InitializeDeck();
-        DrawStartingHand();
+        //InitializeDeck();
+        //DrawStartingHand();
     }
     
-    private void InitializeDeck()
+    /*private void InitializeDeck()
     {
         deck.Clear();
         foreach (Card card in startingDeck)
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
         ShuffleDeck();
     }
-    
+    */
     public void StartTurn()
     {
         // Reset energy
@@ -192,7 +192,14 @@ public class PlayerController : MonoBehaviour
             activeEffects.Remove(effect);
         }
     }
-    
+    public void DrawCards(int amount)
+    {
+        // Simple method that just updates hand display
+        // Actual card drawing is handled by DeckManager
+        OnHandUpdated?.Invoke();
+        handDisplay?.UpdateHandDisplay();
+    }
+    /*
     public void DrawCards(int amount)
     {
         for (int i = 0; i < amount; i++)
@@ -214,7 +221,7 @@ public class PlayerController : MonoBehaviour
     {
         DrawCards(maxHandSize);
     }
-    
+    */
     private void ShuffleDeck()
     {
         for (int i = 0; i < deck.Count; i++)
